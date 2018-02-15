@@ -23,7 +23,7 @@ mimicTrading.controller('HeaderController', ['$scope', function($scope) {
 /* Setup Layout Part - Sidebar */
 mimicTrading.controller('SidebarController', ['$state', '$scope', function($state, $scope) {
     $scope.$on('$includeContentLoaded', function() {
-        //Layout.initSidebar($state); // init sidebar
+        Layout.initSidebar($state); // init sidebar
     });
 }]);
 

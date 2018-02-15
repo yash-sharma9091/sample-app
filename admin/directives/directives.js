@@ -7,7 +7,6 @@ mimicTrading.directive('ngSpinnerBar', ['$rootScope', '$state',
     function($rootScope, $state) {
         return {
             link: function(scope, element, attrs) {
-                console.log("loaded");
                 // by defult hide the spinner bar
                 element.addClass('hide'); // hide spinner bar by default
 
@@ -22,7 +21,7 @@ mimicTrading.directive('ngSpinnerBar', ['$rootScope', '$state',
                     
                     $('body').removeClass('page-on-load'); // remove page loading indicator
                     Layout.setAngularJsSidebarMenuActiveLink('match', null, event.currentScope.$state); // activate selected link in the sidebar menu
-                    console.log("skdjfhsd");
+                    
                     // auto scorll to page top
                     setTimeout(function () {
                         App.scrollTop(); // scroll to the top on content load

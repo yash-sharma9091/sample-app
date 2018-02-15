@@ -15,7 +15,6 @@ exports.adminVendorList=[
 	"./bower_components/angular-messages/angular-messages.min.js",
 	"./bower_components/angular-ui-router/release/angular-ui-router.min.js",
 	"./bower_components/angular-ui-router/release/stateEvents.js",
-
 	"./assets/global/plugins/angularjs/plugins/ocLazyLoad.min.js",
 	"./assets/global/plugins/angularjs/plugins/ui-bootstrap-tpls.min.js",
 	"./bower_components/angular-local-storage/dist/angular-local-storage.min.js",
@@ -68,7 +67,7 @@ exports.adminVendorCSSListFirst = [
 exports.adminVendorCSSListTwo = [
 	"./assets/global/css/components-md.min.css",
 	"./assets/global/css/plugins-md.min.css",
-	"./assets/layouts/layout3/css/layout.min.css",
-	"./assets/layouts/layout3/css/themes/default.min.css",
-	"./assets/layouts/layout3/css/custom.min.css"
+	"./assets/layouts/layout/css/layout.min.css",
+	"./assets/layouts/layout/css/themes/default.min.css",
+	"./assets/layouts/layout/css/custom.min.css"
 ];
