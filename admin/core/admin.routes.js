@@ -11,8 +11,6 @@ myapp.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $u
     
 	$stateProvider
 	.state('login',{
-<<<<<<< HEAD
-=======
 		url: '/',
 		controller: 'loginCtrl',
 		templateUrl: '/login/views/login.html',
@@ -31,7 +29,6 @@ myapp.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $u
 		},
 	})
 	.state('dashboard',{
->>>>>>> c7eae3b548a8da2c7a76ae39d151a9f95518a98d
 		url: '/',
 		controller: 'loginCtrl',
 		templateUrl: '/login/views/login.html',
