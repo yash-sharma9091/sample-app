@@ -6,6 +6,6 @@ const   path    = require('path'),
 
         module.exports = {
             routes:[
-
+                // { url: '/login', method: ctrls.aaaCtrl.login, type: 'post' },
             ]
         }   

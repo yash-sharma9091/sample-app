@@ -1,6 +1,6 @@
 'use strict';
 
-var mimicTrading = angular.module('mimicTrading', [
+var myapp = angular.module('myapp', [
 	'ui.router',
 	'ngAnimate',
 	'ngMessages',
@@ -15,3 +15,8 @@ var mimicTrading = angular.module('mimicTrading', [
 	'textAngular'
 	
 ]);
+
+
+
+
+// mimicTrading

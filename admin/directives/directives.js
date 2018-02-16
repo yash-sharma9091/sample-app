@@ -3,7 +3,7 @@ GLobal Directives
 ***/
 
 // Route State Load Spinner(used on page or content load)
-mimicTrading.directive('ngSpinnerBar', ['$rootScope', '$state',
+myapp.directive('ngSpinnerBar', ['$rootScope', '$state',
     function($rootScope, $state) {
         return {
             link: function(scope, element, attrs) {
@@ -43,7 +43,7 @@ mimicTrading.directive('ngSpinnerBar', ['$rootScope', '$state',
 ])
 
 // Handle global LINK click
-mimicTrading.directive('a', function() {
+myapp.directive('a', function() {
     return {
         restrict: 'E',
         link: function(scope, elem, attrs) {
@@ -57,7 +57,7 @@ mimicTrading.directive('a', function() {
 });
 
 // Handle Dropdown Hover Plugin Integration
-mimicTrading.directive('dropdownMenuHover', function () {
+myapp.directive('dropdownMenuHover', function () {
   return {
     link: function (scope, elem) {
       elem.dropdownHover();

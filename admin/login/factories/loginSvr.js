@@ -1,20 +1,17 @@
 'use strict';
 
-mimicTrading.factory('loginSrv', ['localStorageService', '$rootScope', function(localStorageService, $rootScope)  { // Don't use arrow function here because it will change the "this" to undefined
-    return {
-    	isLogged: false,
-    	initAdminSession: function(admin, token) { // Don't use arrow function here because it will change the "this" to undefined
-    		this.isLogged = true;
-    		localStorageService.set('token', token);
-    		localStorageService.set('admin', admin);
-    		$rootScope.admin = localStorageService.get('admin');
-		},
-		updateAdminSession: function(admin, token) { // Don't use arrow function here because it will change the "this" to undefined
-		
-		localStorageService.set('admin', admin);
-			
-			$rootScope.admin = localStorageService.get('admin');
-		},
-    	getToken: () => localStorageService.get('token')
-    };
+/*this login Srvice will be calles in login controller */
+myapp.factory('loginSrv',['localStorageService', '$rootScope',function(localStorageService,$rootScope){
+	return {
+			setAdmin:function(admin,token){
+				localStorageService.set('admin',admin); 
+				localStorageService.set('token',token);
+			},
+			updateAdminSession: function(admin, token) { 
+				$rootScope.admin = localStorageService.get('admin');
+			},
+			getToken:function(){
+				return localStorageService.get('token');
+			}
+	}
 }]);
