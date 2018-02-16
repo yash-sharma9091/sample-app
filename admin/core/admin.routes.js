@@ -11,6 +11,27 @@ myapp.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $u
     
 	$stateProvider
 	.state('login',{
+<<<<<<< HEAD
+=======
+		url: '/',
+		controller: 'loginCtrl',
+		templateUrl: '/login/views/login.html',
+		authenticate: false,
+		data: {pageTitle: 'Login'},
+		resolve: {
+		    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+		        return $ocLazyLoad.load({
+		            name: 'mimicTrading',
+		            insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+		            files: [
+		                '/assets/css/admin-login-style.css'
+		            ] 
+		        });
+		    }]
+		},
+	})
+	.state('dashboard',{
+>>>>>>> c7eae3b548a8da2c7a76ae39d151a9f95518a98d
 		url: '/',
 		controller: 'loginCtrl',
 		templateUrl: '/login/views/login.html',

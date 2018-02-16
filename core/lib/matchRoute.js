@@ -4,7 +4,7 @@ module.exports = (connectedRouter, x) => {
 		case 'put':
 		case 'post':
 		case 'delete':
-			if(x.hasOwnProperty('mwear')){
+			if(x.hasOwnProperty('middleware')){
 				connectedRouter[x.type](x.url, x.mwear, x.method);	
 			} else {
 				connectedRouter[x.type](x.url, x.method);

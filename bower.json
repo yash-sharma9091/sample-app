@@ -38,9 +38,14 @@
     "moment": "^2.20.1",
     "textAngular": "^1.5.16",
     "bootbox.js": "^4.4.0",
-    "ngmap": "^1.18.4"
+    "ngmap": "^1.18.4",
+    "font-awesome": "^4.7.0"
   },
   "devDependencies": {
     "angular-bootstrap-multiselect": "^0.5.1"
+  },
+  "resolutions": {
+    "bootstrap": "^3.0.0",
+    "jquery": "1.9.1 - 3"
   }
 }

@@ -1,44 +1,104 @@
+
 'use strict';
-require('dotenv').config({silent: true});
 
-const express       = require('express'),
-      app           = express(),
-      path 	        = require('path'),
-      mongoose      = require('mongoose'),
-      morgan 		= require('morgan'),
-      bodyParser 	= require('body-parser'),
-      routes 		= require(path.resolve('./core/routes')),
-      http          = require('http').Server(app),
-      config 		= require(require(path.resolve('./core/env')).getEnv),
-      PORT          = process.env.PORT || 8000;
+require('dotenv').config({ silent: true });
+const express           = require('express'),
+    http                = require('http'),
+    morgan              = require('morgan'),
+    path                = require('path'),
+    bodyParser          = require('body-parser'),
+    router              = express.Router(),
+    routes              = require('./app/config/routes'),
+    database            = require(path.resolve("./app/config/libs/mongoose")),
+    admin               = require(path.resolve('./app/controllers/Admin/index')),
+    env                 = require(path.resolve(`./app/config/env/${process.env.NODE_ENV}`));
 
+class Server {
 
-     
-mongoose.set('debug', config.db.DEBUG);
-mongoose.connect(config.db.URL);
+    constructor() {
+        /*defining PORT for application*/
+        this.port = env.server.PORT || 3000;
 
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(bodyParser.json());
+        /*init express app*/
+        this.app = express();
 
+        /*init a sever*/
+        this.server = http.createServer(this.app);
 
-app.use(express.static(path.resolve('./admin')));
-app.use('/assets', express.static(path.resolve('./assets')));
+        /*init admin class to create a user on Very first time use*/
+        this.admin = new admin();
 
-app.use(morgan('dev'));
+        /* express router */
+        this.router = router;
 
-app.use('/adminapi',routes.admin)
-
-app.use(function(req,res){
-    res.sendFile(path.resolve('./admin/index.html'));
-});
-
-http.listen(PORT, function (err) {
-    if (err) {
-        console.log(err);
-    } else {
-        console.log('listening on *:' + PORT);
+        /*routes created */
+        this.routes;
     }
-});
-    
+
+    appConfig() {
+        /*allow application to read and send data in body*/
+        this.app.use(bodyParser.json({ limit: '50mb' }));
+        this.app.use(bodyParser.urlencoded({ limit: '50mb' , extended: true }));
+    }
+
+    connectoToDB() {
+        /* object of databse is creted its method
+           "dbConnect() is called"*/
+        new database().dbConnect();
+    }
+
+    initRoutes() {
+        /* routes are intialised and "this.app" &
+           "this.router" are passed in constructor */
+        this.routes = new routes(this.app, this.router).init();
+    }
+
+    morgon() {
+        this.app.use(morgan('dev'));
+    }
+
+    setStaticPaths() {
+        this.app.use(express.static(path.resolve('./admin')));
+        this.app.use('/assets',express.static(path.resolve('./assets')));
+    }
+
+    setAPIRoutes() {
+        /*routin admin_api */
+        this.app.use("/admin_api", this.routes);
+    }
+
+    allowToServe() {
+        /*rendering file on routes*/
+        this.app.get(/^((?!\/(api|admin_api)).)*$/, (req, res) => {
+            res.sendFile(path.resolve('./admin/index.html'));
+            
+        });
+    }
 
 
+    listen() {
+        this.server.listen(this.port, () => {
+            /**to create an admin if not exist*/
+            this.admin.checkAdminAccount();
+            console.log('listening on', this.server.address().port);
+        });
+    }
+
+    init() {
+
+        this.appConfig();
+        this.connectoToDB();
+        this.morgon();
+        this.initRoutes();
+        this.setStaticPaths();
+        this.setAPIRoutes();
+        this.allowToServe();
+        this.listen();
+    }
+
+}
+
+
+let application = new Server();
+
+application.init();

@@ -17,3 +17,14 @@ myapp.factory('settings', ['$rootScope', function($rootScope) {
     $rootScope.settings = settings;
     return settings;
 }]);
+
+
+/**emptybj h */
+mimicTrading.factory('notificationSvr', [function () {
+    var notification ={};
+    notification.markAsRead = function( data) {
+        console.log(data);
+    };
+    return notification;
+
+}]);
