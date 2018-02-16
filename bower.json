@@ -43,5 +43,9 @@
   },
   "devDependencies": {
     "angular-bootstrap-multiselect": "^0.5.1"
+  },
+  "resolutions": {
+    "bootstrap": "^3.0.0",
+    "jquery": "1.9.1 - 3"
   }
 }
