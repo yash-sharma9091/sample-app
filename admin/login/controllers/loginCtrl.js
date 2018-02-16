@@ -1,7 +1,19 @@
-'use strict';
-mimicTrading.controller('loginCtrl', ['$scope','$rootScope','$state','$http', 'loginSrv',
-	($scope,$rootScope,$state,$http, loginSrv) => {
+'use strict'
+myapp.controller('loginCtrl',["$scope",'$rootScope','$state','loginSrv','RestSvr',function($scope,$rootScope,$state,loginSrv,RestSvr){
 
+<<<<<<< HEAD
+	console.log("loginctrl")
+	$scope.submitForm=function(){
+		// RestSvr.login('',$scope.user)
+		// .then((response)=>{
+
+		// })
+		// .catch((error))
+		console.log("user",$scope.user)
+		loginSrv.setAdmin($scope.user,'asvffdfs')
+		// loginSrv.initAdminSession($scope.user,'asvffdfs')
+		console.log(loginSrv.getToken())
+=======
 		/**
 		 * login function will authenticate user 
 		 * and redirect to specific dashboard
@@ -46,5 +58,8 @@ mimicTrading.controller('loginCtrl', ['$scope','$rootScope','$state','$http', 'l
 				$scope.isLoading = false;
 			});
 	  };
+>>>>>>> c7eae3b548a8da2c7a76ae39d151a9f95518a98d
 	}
-]);
+
+
+}])

@@ -1,5 +1,22 @@
 'use strict';
 
+<<<<<<< HEAD
+myapp.config(['$httpProvider',function($httpProvider){
+	var interceptor=['$rootScope','loginSrv',function($rootScope,loginSrv){
+        return {
+            request: function(config) {
+            	  var token = loginSrv.getToken();
+                if (token ) {
+                    config.headers['Authorization'] = "Bearer " + token;
+                }
+                return config;
+            }
+        }    
+      
+	}]
+	$httpProvider.interceptors.push(interceptor);
+}])
+=======
 /* Application config */
 /*Angular interceptors are service factories that are registered with the $httpProvider */
 mimicTrading.config(['$httpProvider', function($httpProvider){
@@ -62,11 +79,21 @@ mimicTrading.config(['$httpProvider', function($httpProvider){
         style: 'zoom-in',
     });
 }])
+>>>>>>> c7eae3b548a8da2c7a76ae39d151a9f95518a98d
 .config(['$ocLazyLoadProvider', function($ocLazyLoadProvider) {
     $ocLazyLoadProvider.config({
         // global configs go here
     });
 }])
+<<<<<<< HEAD
+.config(['localStorageServiceProvider',function(localStorageServiceProvider){
+	localStorageServiceProvider.setPrefix('localAdmin')
+}])
+.run(['$location','$rootScope','loginSrv','$state','localStorageService',function($location,$rootScope,loginSrv,$state,localStorageService){
+
+		$rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
+            if (toState.authenticate  && !localStorageService.get('admin')){
+=======
 .config(['$qProvider', function ($qProvider) {
     $qProvider.errorOnUnhandledRejections(false);
 }])
@@ -183,6 +210,7 @@ mimicTrading.config(['$httpProvider', function($httpProvider){
             $rootScope.server_error_message = '';
             if (toState.authenticate && !loginSrv.isLogged && !localStorageService.get('admin')){
                 loginSrv.isLogged = false;
+>>>>>>> c7eae3b548a8da2c7a76ae39d151a9f95518a98d
                 $state.go("login");
                 event.preventDefault(); 
             }else {
@@ -193,6 +221,9 @@ mimicTrading.config(['$httpProvider', function($httpProvider){
             }
 		});
 
+<<<<<<< HEAD
+ /* This will logout the admin from the application */
+=======
         $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
             $rootScope.isPageLoading = false;
         });
@@ -211,10 +242,20 @@ mimicTrading.config(['$httpProvider', function($httpProvider){
         });
 
         /* This will logout the admin from the application */
+>>>>>>> c7eae3b548a8da2c7a76ae39d151a9f95518a98d
         $rootScope.clearToken = function () {
             localStorageService.remove('token');
             localStorageService.remove('admin');
             delete $rootScope.admin;
+<<<<<<< HEAD
+          $state.go("login");
+        };
+
+        // Set the admin for entire application
+        $rootScope.token = localStorageService.get('token');
+}])
+
+=======
             loginSrv.isLogged = false;
             $state.go("login");
         };
@@ -324,3 +365,4 @@ pe.server_error_message = '';
         };
     }
 ]);
+>>>>>>> c7eae3b548a8da2c7a76ae39d151a9f95518a98d

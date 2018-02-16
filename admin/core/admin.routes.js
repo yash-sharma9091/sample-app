@@ -1,20 +1,18 @@
 'use strict';
 
 /* Application routes */
-mimicTrading.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider){
+myapp.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider){
 	 // the known route
     $urlRouterProvider.when('', '/');
 
     // For any unmatched url, send to 404
     //$urlRouterProvider.otherwise('/404');
-    $urlRouterProvider.otherwise(function($injector, $location){
-	   var state = $injector.get('$state');
-	   state.go('404');
-	   return $location.path();
-	});
+ 
     
 	$stateProvider
 	.state('login',{
+<<<<<<< HEAD
+=======
 		url: '/',
 		controller: 'loginCtrl',
 		templateUrl: '/login/views/login.html',
@@ -33,14 +31,33 @@ mimicTrading.config(['$stateProvider', '$urlRouterProvider',function($stateProvi
 		},
 	})
 	.state('dashboard',{
+>>>>>>> c7eae3b548a8da2c7a76ae39d151a9f95518a98d
 		url: '/',
+		controller: 'loginCtrl',
+		templateUrl: '/login/views/login.html',
+		authenticate: false,
+		data: {pageTitle: 'Login'},
+		resolve: {
+		    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+		        return $ocLazyLoad.load({
+		            name: 'myapp',
+		            insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+		            files: [
+		                '/assets/css/admin-login-style.css'
+		            ] 
+		        });
+		    }]
+		},
+	})
+	.state('dashboard',{
+		url: '/dashboard',
 		controller: 'DashboardController',
 		templateUrl: '/dashboard/views/dashboard.html',
 		data: {pageTitle: 'Dashboard', smallTitle: 'dashboard & statistics'},
 		resolve: {
 		    deps: ['$ocLazyLoad', function($ocLazyLoad) {
 		        return $ocLazyLoad.load({
-		            name: 'mimicTrading',
+		            name: 'myapp',
 		            insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
 		            files: [
 		                '/assets/global/plugins/morris/morris.css',                            
@@ -52,7 +69,7 @@ mimicTrading.config(['$stateProvider', '$urlRouterProvider',function($stateProvi
 		        });
 		    }]
 		},
-		authenticate: false
+		authenticate: true
 	})
 	.state('404',{
 		templateUrl: '/tpl/404.html',
@@ -61,7 +78,7 @@ mimicTrading.config(['$stateProvider', '$urlRouterProvider',function($stateProvi
 		resolve: {
 		    deps: ['$ocLazyLoad', function($ocLazyLoad) {
 		        return $ocLazyLoad.load({
-		            name: 'mimicTrading',
+		            name: 'myapp',
 		            insertBefore: '#ng_load_plugins_before',
 		            files: [
 		                '/assets/pages/css/error.min.css',
@@ -77,7 +94,7 @@ mimicTrading.config(['$stateProvider', '$urlRouterProvider',function($stateProvi
 		resolve: {
 		    deps: ['$ocLazyLoad', function($ocLazyLoad) {
 		        return $ocLazyLoad.load({
-		            name: 'mimicTrading',
+		            name: 'myapp',
 		            insertBefore: '#ng_load_plugins_before',
 		            files: [
 		                '/assets/pages/css/error.min.css',
@@ -96,7 +113,7 @@ mimicTrading.config(['$stateProvider', '$urlRouterProvider',function($stateProvi
 	    resolve: {
 		    deps: ['$ocLazyLoad', function($ocLazyLoad) {
 		        return $ocLazyLoad.load({
-		            name: 'mimicTrading',
+		            name: 'myapp',
 		            insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
 		            files: [
 		                '/assets/css/admin-login-style.css'
