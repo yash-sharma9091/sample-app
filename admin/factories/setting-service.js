@@ -17,3 +17,14 @@ mimicTrading.factory('settings', ['$rootScope', function($rootScope) {
 
     return settings;
 }]);
+
+
+/**emptybj h */
+mimicTrading.factory('notificationSvr', [function () {
+    var notification ={};
+    notification.markAsRead = function( data) {
+        console.log(data);
+    };
+    return notification;
+
+}]);
