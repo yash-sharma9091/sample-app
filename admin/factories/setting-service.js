@@ -20,7 +20,7 @@ myapp.factory('settings', ['$rootScope', function($rootScope) {
 
 
 /**emptybj h */
-mimicTrading.factory('notificationSvr', [function () {
+myapp.factory('notificationSvr', [function () {
     var notification ={};
     notification.markAsRead = function( data) {
         console.log(data);
