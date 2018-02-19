@@ -50,5 +50,11 @@ myapp.config(['$httpProvider',function($httpProvider){
 
         // Set the admin for entire application
         $rootScope.token = localStorageService.get('token');
+        if($rootScope.token){
+            console.log('in token')
+        }else{
+            console.log('without token')
+        }
+        $rootScope.admin=localStorageService.get('admin')
 }])
 
