@@ -7,15 +7,7 @@ const mongoose = require('mongoose'),
 
 
 var userSchema = new schema({
-    firstname: String,
-    lastname: String,
-    username: {
-        type: String,
-        lowercase: true,
-        trim: true,
-        required: "Username is required.",
-        unique: "This username is already exists."
-    },
+    username:String,
     email: {
         type: String,
         lowercase: true,
@@ -23,14 +15,12 @@ var userSchema = new schema({
         required: "Email address is required.",
         unique: "This email address is already exists."
     },
-    image: Object,
     password: String,
-    mobile: String,
-    loginCount: {   // to count no. of logins
-        type: Number,
-        default: 0
+    mobile:String,
+    isDeleted:{
+        type:String,
+        default:false
     },
-    auth: String,
     status: {
         type: Boolean,
         default: false
@@ -44,9 +34,11 @@ var userSchema = new schema({
 
 
 userSchema.pre('save', function (next) {
-    // this.auth = crypto.randomBytes(16).toString('hex');
-    this.password = this.encryptPassword(this.password);
+    var user=this;
+    if(this.isModified('password') || this.isNew){
+       user.password = this.encryptPassword(user.password);
     next();
+    }
 });
 
 /* encrypt password by using crypto and mongoose methods*/
@@ -57,7 +49,7 @@ userSchema.methods.encryptPassword = function (password) {
 
 
 /* match password by using crypto and mongoose methods*/
-userSchema.methods.matchPassword = function (password) {
+userSchema.methods.comparePassword = function (password) {
     // console.log("sent",this.encryptPassword(password));
     // console.log("saved ",this.password)
     return this.password === this.encryptPassword(password);

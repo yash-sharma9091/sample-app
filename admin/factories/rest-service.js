@@ -29,8 +29,8 @@ myapp.factory('RestSvr',function($http, $window, $httpParamSerializerJQLike, $q)
         	})
         },
         get:(url,params)=>{
-            let p = !angular.isUndefined(params) ? params : null,
-        	 req = {
+            let p = !angular.isUndefined(params) ? params : null;
+        	var req = {
 					method: 'GET',
 					url: baseUrl(url),
 				 	params: p
@@ -50,7 +50,7 @@ myapp.factory('RestSvr',function($http, $window, $httpParamSerializerJQLike, $q)
         	})
         },
          post:(url,data)=>{
-        	req = {
+        	var req = {
 					method: 'POST',
 					url: baseUrl(url),
 				 	data:data
@@ -72,7 +72,8 @@ myapp.factory('RestSvr',function($http, $window, $httpParamSerializerJQLike, $q)
         	})
         },
         delete:(url,params)=>{
-    	req = {
+		let p = !angular.isUndefined(params) ? params : null;
+    	var req = {
 				method: 'DELETE',
 				url: baseUrl(url),
 			 	params:p
@@ -92,7 +93,7 @@ myapp.factory('RestSvr',function($http, $window, $httpParamSerializerJQLike, $q)
     	})
     },
     put:(url,data)=>{
-        	req = {
+        	var req = {
 					method: 'PUT',
 					url: baseUrl(url),
 				 	data:data
@@ -112,5 +113,11 @@ myapp.factory('RestSvr',function($http, $window, $httpParamSerializerJQLike, $q)
 
 function baseUrl(apiUrl) {
     return  '/admin_api/' + apiUrl;
+}
+
+function prefix(item) {
+    var hostname = window.location.hostname;
+    var prefix= 'localAdmin';
+    return localStorage.getItem(prefix + '.' + item);
 }
 

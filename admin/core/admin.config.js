@@ -22,6 +22,7 @@ myapp.config(['$httpProvider',function($httpProvider){
     });
 }])
 .config(['localStorageServiceProvider',function(localStorageServiceProvider){
+    var prefix = 'localAdmin';
 	localStorageServiceProvider.setPrefix('localAdmin')
 }])
 .run(['$location','$rootScope','loginSrv','$state','localStorageService',function($location,$rootScope,loginSrv,$state,localStorageService){
