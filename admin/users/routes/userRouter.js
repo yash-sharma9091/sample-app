@@ -33,7 +33,7 @@ myapp.config(['$stateProvider',function($stateProvider){
 	})
 	.state('new_User',{
 		url: '/new-user',
-		controller: 'userCtrl',
+		controller: 'userAddCtrl',
 		templateUrl: '/users/views/new_user.html',
 		data: {pageTitle: 'Add New User'},
 		authenticate: true
@@ -42,7 +42,7 @@ myapp.config(['$stateProvider',function($stateProvider){
 		url: '/view-user/:id',
 		controller: 'userViewCtrl',
 		templateUrl: '/users/views/view_user.html',
-		data: {pageTitle: 'User Detail'},
+		data: {pageTitle: 'User Info'},
 		authenticate: true,
 		resolve:userResolver
 	})
@@ -50,7 +50,7 @@ myapp.config(['$stateProvider',function($stateProvider){
 		url: '/edit-user/:id',
 		controller: 'userEditCtrl',
 		templateUrl: '/users/views/edit_user.html',
-		data: {pageTitle: 'User Detail'},
+		data: {pageTitle: 'User Edit'},
 		authenticate: true,
 		resolve:userResolver
 	})
