@@ -22,6 +22,7 @@ myapp.config(['$httpProvider',function($httpProvider){
     });
 }])
 .config(['localStorageServiceProvider',function(localStorageServiceProvider){
+    var prefix = 'localAdmin';
 	localStorageServiceProvider.setPrefix('localAdmin')
 }])
 .run(['$location','$rootScope','loginSrv','$state','localStorageService',function($location,$rootScope,loginSrv,$state,localStorageService){
@@ -50,5 +51,11 @@ myapp.config(['$httpProvider',function($httpProvider){
 
         // Set the admin for entire application
         $rootScope.token = localStorageService.get('token');
+        if($rootScope.token){
+            console.log('in token')
+        }else{
+            console.log('without token')
+        }
+        $rootScope.admin=localStorageService.get('admin')
 }])
 

@@ -4,72 +4,98 @@ to call all http methods*/
 
 
 myapp.factory('RestSvr',function($http, $window, $httpParamSerializerJQLike, $q) {
-	let baseUrl='/admin_api'
     return{
         login:(url,data)=>{
         	var req={
-        		method:POST,
-        		url:baseUrl+url,
+        		method:'POST',
+        		url:baseUrl(url),
         		data:data
         	}
         	return $q((resolve,reject)=>{
         		$http(req).then(function(response){
-        			resolve(response)
+        			resolve({
+                            result: response.data.message, 
+                            user: response.data.data,
+                            token: response.data.token
+                    })
         		})
         		.catch(function(response){
-        			reject(response)
+                    console.log(response)
+        			reject({
+                            errors: true,
+                            message: response.data.message || 'Internal Server Error',
+                    })
         		})
         	})
         },
         get:(url,params)=>{
-        	req = {
+            let p = !angular.isUndefined(params) ? params : null;
+        	var req = {
 					method: 'GET',
-					url: baseUrl(apiUrl),
+					url: baseUrl(url),
 				 	params: p
 				};
 				return $q((resolve,reject)=>{
         		$http(req).then(function(response){
-        			resolve(response)
+        			resolve({
+                        record: response.data
+                    })
         		})
         		.catch(function(response){
-        			reject(response)
+        			reject({
+                        errors: true,
+                        message: response.data.message || 'Internal Server Error',
+                    })
         		})
         	})
         },
          post:(url,data)=>{
-        	req = {
+        	var req = {
 					method: 'POST',
-					url: baseUrl(apiUrl),
+					url: baseUrl(url),
 				 	data:data
 				};
 				return $q((resolve,reject)=>{
         		$http(req).then(function(response){
-        			resolve(response)
+        			resolve({
+                        result: response.data.message, 
+                        user: response.data.data,
+                        records: response.data.result
+                    })
         		})
         		.catch(function(response){
-        			reject(response)
+        			reject({
+                        message: response.data.message || 'Internal Server Error',
+                        status: response.data.status
+                    })
         		})
         	})
         },
         delete:(url,params)=>{
-    	req = {
+		let p = !angular.isUndefined(params) ? params : null;
+    	var req = {
 				method: 'DELETE',
-				url: baseUrl(apiUrl),
+				url: baseUrl(url),
 			 	params:p
 			};
 			return $q((resolve,reject)=>{
     		$http(req).then(function(response){
-    			resolve(response)
+    			resolve({
+                    record: response.data
+                })
     		})
     		.catch(function(response){
-    			reject(response)
+    			reject({
+                     errors: true,
+                    message: response.data.message || 'Internal Server Error',
+                })
     		})
     	})
     },
     put:(url,data)=>{
-        	req = {
+        	var req = {
 					method: 'PUT',
-					url: baseUrl(apiUrl),
+					url: baseUrl(url),
 				 	data:data
 				};
 				return $q((resolve,reject)=>{
@@ -84,4 +110,14 @@ myapp.factory('RestSvr',function($http, $window, $httpParamSerializerJQLike, $q)
 
     }
 });
+
+function baseUrl(apiUrl) {
+    return  '/admin_api/' + apiUrl;
+}
+
+function prefix(item) {
+    var hostname = window.location.hostname;
+    var prefix= 'localAdmin';
+    return localStorage.getItem(prefix + '.' + item);
+}
 

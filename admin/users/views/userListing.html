@@ -1,0 +1,66 @@
+<div class="row">
+                            <div class="col-md-12">
+                                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                                <div class="portlet light bordered">
+                                    <div class="portlet-title">
+                                        <div class="caption font-dark">
+                                            <i class="icon-settings font-dark"></i>
+                                            <span class="caption-subject bold uppercase"> Managed Table</span>
+                                        </div>
+                                        <div class="actions">
+                                            <div class="btn-group btn-group-devided" data-toggle="buttons">
+                                                <label class="btn btn-transparent dark btn-outline btn-circle btn-sm active">
+                                                    <input type="radio" name="options" class="toggle" id="option1">Actions</label>
+                                                <label class="btn btn-transparent dark btn-outline btn-circle btn-sm">
+                                                    <input type="radio" name="options" class="toggle" id="option2">Settings</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div class="table-toolbar">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="btn-group">
+                                                      <!--   <button id="sample_editable_1_new" class="btn sbold green"> Add New
+                                                            <i class="fa fa-plus"></i>
+                                                        </button> -->
+                                                        <a href ui-sref="new_User" class="btn sbold green">
+                                                         <i class="fa fa-plus"></i>
+                                                        <span> Add New</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <table class="table table-striped table-bordered table-hover table-checkable order-column" id="datatable_ajax">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                    <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                                        <input type="checkbox" class="group-checkable"  />
+                                                        <span></span>
+                                                    </label>
+                                                    </th>
+                                                    <th> Username </th>
+                                                    <th> Mobile </th>
+                                                    <th> Email </th>
+                                                    <th> Status</th>
+                                                    <th> Actions </th>
+                                                </tr>
+                            <!-- <tr role="row" class="filter">
+                                <td></td>
+                                <td> </td>
+                                <td> </td>
+                                <td></td>
+                                <td> </td>
+                                <td></td>
+                            </tr> -->
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- END EXAMPLE TABLE PORTLET-->
+                            </div>
+                            
+                        </div>

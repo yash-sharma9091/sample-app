@@ -28,6 +28,7 @@ class Server {
         /*init admin class to create a user on Very first time use*/
         this.admin = new admin();
 
+
         /* express router */
         this.router = router;
 

@@ -7,7 +7,6 @@ const mongoose           = require('mongoose'),
 
 class Index {
     checkAdminAccount() {
-        console.log(" in checkAdminAccount")
         Admin.findOne({
             role: "superAdmin",
         }, (err, result) => {

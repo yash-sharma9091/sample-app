@@ -56,6 +56,9 @@ class AppRouter {
                 this.admin_api_path + 'login',
                 this.admin_api_path + 'forgot-password',
                 this.admin_api_path + 'reset-password',
+                this.admin_api_path + 'add-user',
+                this.admin_api_path + 'view-user',
+                this.admin_api_path + 'get-user/:id',
             ]
         }));
     }
@@ -63,6 +66,11 @@ class AppRouter {
     /**to load all the routes of admin  */
     loadAdminRoutes() {
         this.router.post('/login', this.call['backend']['AdminController'].login);
+        this.router.post('/add-user', this.call['backend']['userController'].addUser);
+        this.router.post('/view-user', this.call['backend']['userController'].userList);
+        this.router.get('/get-user/:id',this.call['backend']['userController'].userView);
+        this.router.put('/edit-user/:id',this.call['backend']['userController'].userEdit);
+        this.router.delete('/delete-user/:id',this.call['backend']['userController'].userDelete);
         // this.router.post('/my-profile', this.call['backend']['AdminController'].profile);
         // this.router.post('/forgot-password', this.call['backend']['AdminController'].forgotPassword);
         // this.router.post('/reset-password', this.call['backend']['AdminController'].resetPassword);

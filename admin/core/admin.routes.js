@@ -28,6 +28,7 @@ myapp.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $u
 		    }]
 		},
 	})
+
 	.state('dashboard',{
 		url: '/dashboard',
 		controller: 'DashboardController',
