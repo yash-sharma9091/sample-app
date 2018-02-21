@@ -37,15 +37,15 @@ class AppRouter {
     }
 
     /** to load all the classes of frontend directory */
-    loadAppClasses() {
-        fs.readdirSync(path.resolve('./app/controllers/User')).forEach(file => {
-            let name = file.substr(0, file.indexOf('.'));
-            /*Store Classes in frontend object*/
-            this.frontend[name] = require(path.resolve(`./app/controllers/User/${name}`));
-            /*Init All Classes & add Object to Array*/
-            this.call['frontend'][name] = new this.frontend[name]();
-        });
-    }
+    // loadAppClasses() {
+    //     fs.readdirSync(path.resolve('./app/controllers/User')).forEach(file => {
+    //         let name = file.substr(0, file.indexOf('.'));
+    //         /*Store Classes in frontend object*/
+    //         this.frontend[name] = require(path.resolve(`./app/controllers/User/${name}`));
+    //         /*Init All Classes & add Object to Array*/
+    //         this.call['frontend'][name] = new this.frontend[name]();
+    //     });
+    // }
 
     /** define route in array of path:[] which will run without authentication */
     unlessRoutes() {
@@ -84,7 +84,7 @@ class AppRouter {
 
     init() {
         this.loadAdminClasses();
-        this.loadAppClasses();
+        // this.loadAppClasses();
         this.unlessRoutes();
         this.loadAdminRoutes();
         this.loadAppRoutes();

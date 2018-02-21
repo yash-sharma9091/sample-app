@@ -7,10 +7,19 @@ myapp.controller('userEditCtrl',['$state','RestSvr','$scope','appSvr','user',fun
          */
         appSvr.init();
     });
-
     $scope.new_user=user.record.data;
+
+    if($scope.new_user.isDeleted){
+        $scope.new_user.status='delete'
+    }
+    
+   
     let id=$state.params.id;
     $scope.formSubmit=function(){
+        if($scope.new_user.status=='delete'){
+            $scope.new_user.isDeleted=true;
+            $scope.new_user.status=false;
+        }
         RestSvr.put(`edit-user/${id}`,$scope.new_user)
         .then((response)=>{
             $state.go('users');
